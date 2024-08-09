@@ -1,0 +1,31 @@
+# Dependency directories
+node_modules/
+vendor/
+
+# Environment-specific files
+.env
+*.env.local
+*.env.*
+
+# IDE/editor specific files
+.idea/
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+.temp/
+.DS_Store
+
+# Compiled code
+*.class
+*.pyc
+*.dll
+
+# User-specific files
+.history
+.bash_history
+
+# Generated documentation
+doc/
+docs/
