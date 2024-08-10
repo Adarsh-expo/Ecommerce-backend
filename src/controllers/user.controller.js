@@ -95,7 +95,7 @@ httpOnly:true,
 secure:true,
 sameSite:"none",
 
-expires: new Date(Date.now())
+
 }
 console.log(accesstoken,"iiiiiiiiiiiiiii")
 return res.status(200).
