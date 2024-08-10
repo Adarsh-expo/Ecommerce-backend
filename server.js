@@ -24,7 +24,7 @@ dbconnection();
 const app=express();
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://ecommerce-backend-teif.onrender.com',
+    origin: 'https://the-ecommerce-frontend.vercel.app/',
     credentials: true,
   }))
 app.use(express.json())
