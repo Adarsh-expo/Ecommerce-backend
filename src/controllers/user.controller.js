@@ -93,7 +93,7 @@ const{accesstoken,refreshtoken}=await generatetokensall(finduser._id)
 const Option={
 httpOnly:true,
 secure:true,
-sameSite:"lax",
+sameSite:"none",
 domain:'.https://the-ecommerce-frontend.vercel.app'
 
 }
