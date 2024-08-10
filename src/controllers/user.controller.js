@@ -97,6 +97,7 @@ sameSite:"none",
 domain:'.the-ecommerce-frontend.vercel.app'
 
 }
+console.log(accesstoken,"iiiiiiiiiiiiiii")
 return res.status(200).
 cookie("accesstoken",accesstoken,Option).
 cookie("refreshtoken",refreshtoken,Option).
