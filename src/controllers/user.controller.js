@@ -94,7 +94,7 @@ const Option={
 httpOnly:true,
 secure:true,
 sameSite:"none",
-domain:'the-ecommerce-frontend.vercel.app',
+
 expires: new Date(Date.now())
 }
 console.log(accesstoken,"iiiiiiiiiiiiiii")
