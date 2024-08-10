@@ -94,7 +94,7 @@ const Option={
 httpOnly:true,
 secure:true,
 sameSite:"none",
-domain:'.https://the-ecommerce-frontend.vercel.app'
+domain:'.the-ecommerce-frontend.vercel.app'
 
 }
 return res.status(200).
