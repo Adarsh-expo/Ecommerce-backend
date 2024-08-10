@@ -60,7 +60,7 @@ console.log(uploadResult.url)}
 
 
 
-const createaccount=await User.create({username:username.toLowerCase(),
+const createaccount=await User.create({username:username,
     password,email,avatar:uploadResult?.url ||"",phone,address})
 
 
@@ -93,7 +93,8 @@ const{accesstoken,refreshtoken}=await generatetokensall(finduser._id)
 const Option={
 httpOnly:true,
 secure:true,
-sameSite:"lax"
+sameSite:"lax",
+domain:'.https://the-ecommerce-frontend.vercel.app'
 
 }
 return res.status(200).
