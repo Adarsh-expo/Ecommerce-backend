@@ -118,7 +118,8 @@ const access=await User.findByIdAndUpdate({_id:req.user._id}
 
 const Option={
     httpOnly:true,
-    secure:true
+    secure:true,
+    sameSite:"none"
 }
 
 return res.status(200).
