@@ -25,7 +25,7 @@ dbconnection();
 const app=express();
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://the-ecommerce-frontend.vercel.app/',
+    origin: 'https://the-ecommerce-frontend.vercel.app',
     credentials: true,
   }))
 app.use(express.json())
