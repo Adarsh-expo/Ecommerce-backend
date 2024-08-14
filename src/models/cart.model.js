@@ -5,8 +5,12 @@ const cartschema=mongoose.Schema({
     ref:"Product"
     },
     choosenquantity:{
-        typen:Number,
+        type:Number,
         required:true
+    },
+    user:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User"
     }
 })
 export const Cart=mongoose.model("Cart",cartschema)
