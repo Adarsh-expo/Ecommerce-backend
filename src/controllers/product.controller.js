@@ -2,6 +2,7 @@
 import slugify from "slugify";
 import { Product } from "../models/product.model.js"
 import cloudinaryupload from "../utils/cloudinary.js"
+import { Feedbackuser } from "../models/productuserfeedback.model.js";
 
 import fs from 'fs'
 
@@ -61,7 +62,17 @@ const detail=  await Product.aggregate([
 { $unwind:"$Productwithcategorydetail"},
 {$lookup:{from:"categories",localField:"Productwithcategorydetail.category",foreignField:"_id",as:"productcategsubcategdetail"}},
 {$unwind:"$productcategsubcategdetail"},
-{$project:{_id:1,name:1,description:1,price:1,slug:1,quantity:1,photo:1,choosequantity:1,productsubcategory:"$Productwithcategorydetail.name",productcategory:"$productcategsubcategdetail.name"}}])
+{
+   $lookup:{from:"feedbackusers",localField:"_id",foreignField:"product",as:"feedbackdetail",
+   pipeline:[{$lookup:{from:"users",localField:"user",foreignField:"_id",as:"userdetail" }},
+
+{$unwind:"$userdetail"},{$project:{_id:1,review:1,rating:1,username:"$userdetail.username",userid:"$userdetail._id"}}
+
+]} //writing subpipeline at userdetail level
+},{$addFields:{totalreviews:{$size:"$feedbackdetail"}}},
+{$project:{_id:1,name:1,description:1,price:1,slug:1,quantity:1,photo:1,choosequantity:1,
+    productsubcategory:"$Productwithcategorydetail.name",productcategory:"$productcategsubcategdetail.name",feedbackdetail:1,totalreviews:1}}
+])
 res.send(detail)
 
 }
