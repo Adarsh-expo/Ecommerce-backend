@@ -88,7 +88,7 @@ const singleproduct=await Product.aggregate([{
 
 },{$unwind:"$subcategory"},{$lookup:{from:"feedbackusers",localField:"_id",foreignField:"product",as:"feedbackdetail"
 ,pipeline:[{$lookup:{from:"users",localField:"user",foreignField:"_id",as:"userdetail"}},
-{$unwind:"$userdetail"},{$project:{_id:1,review:1,rating:1,username:"$userdetail.username",userid:"$userdetail._id"}}]
+{$unwind:"$userdetail"},{$project:{_id:1,review:1,rating:1,username:"$userdetail.username",userid:"$userdetail._id",userprofilepic:"$userdetail.avatar"}}]
 
 }}
 ,
