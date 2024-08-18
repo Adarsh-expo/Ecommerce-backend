@@ -8,6 +8,7 @@ import  routerproduct from './src/routes/product.route.js';
 import paymentrouter from './src/routes/payment.route.js';
 import { orderrouter } from './src/routes/order.route.js';
 import { cartrouter } from './src/routes/cart.route.js';
+import { feedbackroute } from './src/routes/Userfeedback.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 
@@ -25,7 +26,7 @@ dbconnection();
 const app=express();
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://the-ecommerce-frontend.vercel.app',
+    origin: 'http://localhost:5173',
     credentials: true,
   }))
 app.use(express.json())
@@ -53,6 +54,7 @@ res.send({key:process.env.RAZOR_PAYAPI_KEY})
 
 })
 app.use('/api/v1',cartrouter)
+app.use('/api/v1/user',feedbackroute)
 
 
 
