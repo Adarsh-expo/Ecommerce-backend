@@ -92,10 +92,10 @@ const singleproduct=await Product.aggregate([{
 
 }}
 ,
-{$addFields:{totalreviews:{$size:"$feedbackdetail"}}},
+{$addFields:{totalreviews:{$size:"$feedbackdetail"},averagerating:{$avg:"$feedbackdetail.rating"}}},
 
 {$project:{_id:1,name:1,quantity:1,price:1,description:1,photo:1,category:"$subcategory.name"
-,categoryid:"$subcategory._id",slug:1,qunatity:1,feedbackdetail:1,totalreviews:1}},
+,categoryid:"$subcategory._id",slug:1,quantity:1,feedbackdetail:1,totalreviews:1,averagerating:1}},
 
 
 ])
