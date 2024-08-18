@@ -10,7 +10,7 @@ review:{
 rating:{
 
     type:Number,
-    default:4.8
+    
 }
 ,
 user:{
@@ -21,7 +21,7 @@ user:{
 product:{
 
     type:mongoose.Schema.ObjectId,
-    type:"Product",
+    ref:"Product",
     required:true
 }
 
