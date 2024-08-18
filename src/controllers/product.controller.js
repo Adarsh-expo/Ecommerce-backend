@@ -50,13 +50,6 @@ res.status(500).send({message:err.message})
 const allproduct=async(req,res)=>{
 try{
     
-    
-    
-    
-//     const productall=await Product.find().limit(10).sort({createdAt:-1}).populate('category')
-// res.send({success:true,messageall:"All product",productcount:productall.length,productall})
-
-
 const detail=  await Product.aggregate([
 {$lookup:{from:"subcategories",localField:"category",foreignField:"_id", as:"Productwithcategorydetail"  }},
 { $unwind:"$Productwithcategorydetail"},
@@ -93,7 +86,19 @@ const singleproduct=await Product.aggregate([{
 },{$lookup:{from:"subcategories",localField:"category",foreignField:"_id",as:"subcategory"}
 
 
-},{$unwind:"$subcategory"},{$project:{_id:1,name:1,quantity:1,price:1,description:1,photo:1,category:"$subcategory.name",categoryid:"$subcategory._id",slug:1,qunatity:1}}])
+},{$unwind:"$subcategory"},{$lookup:{from:"feedbackusers",localField:"_id",foreignField:"product",as:"feedbackdetail"
+,pipeline:[{$lookup:{from:"users",localField:"user",foreignField:"_id",as:"userdetail"}},
+{$unwind:"$userdetail"},{$project:{_id:1,review:1,rating:1,username:"$userdetail.username",userid:"$userdetail._id"}}]
+
+}}
+,
+{$addFields:{totalreviews:{$size:"$feedbackdetail"}}},
+
+{$project:{_id:1,name:1,quantity:1,price:1,description:1,photo:1,category:"$subcategory.name"
+,categoryid:"$subcategory._id",slug:1,qunatity:1,feedbackdetail:1,totalreviews:1}},
+
+
+])
 
 res.send(singleproduct)
 
