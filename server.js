@@ -26,7 +26,7 @@ dbconnection();
 const app=express();
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://the-ecommerce-frontend.vercel.app',
     credentials: true,
   }))
 app.use(express.json())
