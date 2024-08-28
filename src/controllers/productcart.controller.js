@@ -2,29 +2,36 @@ import { Cart } from "../models/cart.model.js";
 
 const Insertocart=async(req,res)=>{
 
-const{id,choosenquantity}=req.body;
+const{id,choosenquantity,quantity}=req.body;
 console.log(req.user._id)
 try{
-console.log(choosenquantity,id)
+console.log(choosenquantity,id,quantity)
 
     const search=await Cart.findOne({$and:[{product:id},{user:req.user._id}]});
-  
+  console.log(search,99)
   if(search)
-  {
-    const{quantity}=search;
-    if(search.choosenquantity<quantity){ 
-         search.choosenquantity+=1;}
-  
-    search.save();
-    res.send({success:true,message:"Addes to cart"})
-return;
-}
+  {console.log(search)
+   
+    if(search.choosenquantity<quantity){
+        search.choosenquantity+=1;
+       search.save();
+       res.send({success:true,message:"Added to cart"})
+       }
+    
+return;}
+ 
+else{
 
-const insert=await Cart.create({product:id,choosenquantity,user:req.user._id})
+    const insert=await Cart.create({product:id,choosenquantity,user:req.user._id})
 
 res.send({success:true,message:"Added to cart"})
-
 }
+}
+
+
+
+
+
 catch(err){
 res.send({success:false,message:err.message})
 
@@ -42,6 +49,7 @@ console.log(_id)
 try{
    
     const deletefromcart =await Cart.findByIdAndDelete(_id);
+    console.log("deleted")
     res.send({success:true,message:"Deleted from cart"})
 
 
@@ -112,7 +120,7 @@ quantity:"$cartproduct.quantity",price:"$cartproduct.price",photo:"$cartproduct.
 
 
 ])
-console.log(allcart,"vvvvvvvvvv")
+
 res.send({allcart})
 
 }
